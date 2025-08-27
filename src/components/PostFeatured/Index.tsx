@@ -1,6 +1,7 @@
 import React from "react";
 import PostCoverImage from "../PostCoverImage/Index";
 import PostHeading from "../PostHeading/Index";
+import { formatDateTime } from "@/utils/format-datetime";
 
 function PostFeatured() {
   return (
@@ -17,7 +18,7 @@ function PostFeatured() {
       />
       <div className="flex flex-col sm:justify-center gap-4">
         <time className="text-slate-300 text-sm/tight" dateTime="2025-10-09">
-          09/10/2025 10:00
+          {formatDateTime("2025-10-09T10:00:00Z")}
         </time>
         <PostHeading as="h1" url="/">
           Hacker news!
