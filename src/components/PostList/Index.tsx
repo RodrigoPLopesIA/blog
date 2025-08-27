@@ -1,36 +1,46 @@
 import { Post } from "@/models/post/post-model";
 import React from "react";
+import PostCoverImage from "../PostCoverImage/Index";
+import PostHeading from "../PostHeading/Index";
 
 async function PostList() {
   const response = await fetch("http://localhost:3000/api/posts");
   const posts: Post[] = await response.json();
   return (
-    <>
-      {posts.map((post) => (
-        <div
-          key={post.id}
-          className="max-w-2xl mx-auto my-8 p-4 border rounded-lg shadow-md"
-        >
-          <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
-          <p className="mb-4">
-            By {post.author?.name} on{" "}
-            {new Date(post.createdAt).toLocaleDateString()}
-          </p>
-          {/* {post.coverImageUrl && (
-            <div className="mb-4">
-              <Image
-                src={post.coverImageUrl}
-                alt={post.title}
-                width={600}
-                height={400}
-                className="rounded-lg"
-              />
-            </div>
-          )} */}
-          <p className="">{post.content}</p>
+    
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8 ">
+      {posts.map((post) => {
+        const postLink = `/posts/${post.slug}`
+        return (
+    
+        <div key={post.id} className="flex gap-4 flex-col group">
+          <PostCoverImage
+            imageProps={{
+              src: post.coverImageUrl,
+              alt: post.slug,
+              width: 1200,
+              height: 720,
+              priority: true,
+            }}
+            linkProps={{ href: postLink }}
+          />
+          <div className="flex flex-col sm:justify-center gap-4">
+            <time
+              className="text-slate-300 text-sm/tight"
+              dateTime={post.createdAt.toString()}
+            >
+              {post.createdAt}
+            </time>
+            <PostHeading as="h2" url={postLink}>
+              {post.title}
+            </PostHeading>
+            <p>
+              {post.excerpt}
+            </p>
+          </div>
         </div>
-      ))}
-    </>
+      )})}
+    </div>
   );
 }
 

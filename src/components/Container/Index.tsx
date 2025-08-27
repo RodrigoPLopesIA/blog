@@ -5,7 +5,7 @@ interface ContainerProps {
 }
 export default function Container({ children }: ContainerProps) {
   return (
-    <div className="text-slate-900 bg-slate-100 min-h-screen dark:text-slate-100 dark:bg-slate-900">
+    <div className="text-black bg-slate-100 min-h-screen dark:text-slate-100 dark:bg-black">
       {children}
     </div>
   );
