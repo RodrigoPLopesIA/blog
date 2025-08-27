@@ -1,3 +1,4 @@
+import { User } from "@/generated/prisma";
 
 
 export type Post = {
@@ -10,6 +11,6 @@ export type Post = {
     published: boolean;
     createdAt: string;
     updatedAt: string;
-    author: string;
+    author: User;
 
 }
