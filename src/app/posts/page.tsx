@@ -1,10 +1,10 @@
 import { Post } from "@/models/post/post-model";
-import postimplRepository from "@/repositories/post/postimpl.repository";
+import postPrismaRepository from "@/repositories/post/PostPrisma.repository";
 import { FindAll } from "@/services/post/findall.service";
 import React from "react";
 
 async function Posts() {
-  const postService = new FindAll(postimplRepository);
+  const postService = new FindAll(postPrismaRepository);
 
   const posts: Post[] = await postService.execute();
   return (
