@@ -1,8 +1,6 @@
 import { Post } from "@/models/post/post-model";
 import React from "react";
 import PostCoverImage from "../PostCoverImage/Index";
-import PostHeading from "../PostHeading/Index";
-import { formatDateTime } from "@/utils/format-datetime";
 import PostSummary from "../PostSummary/Index";
 
 async function PostList() {

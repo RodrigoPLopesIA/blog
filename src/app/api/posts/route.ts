@@ -8,6 +8,7 @@ const findAllPosts = new FindAllPostsService(postPrismaRepository);
 
 export async function GET() {
   const data: Post[] = await findAllPosts.execute();
+  
   return NextResponse.json(data);
 }
 
