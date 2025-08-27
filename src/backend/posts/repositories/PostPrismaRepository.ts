@@ -2,6 +2,7 @@ import { Post } from "@/models/post/post-model";
 import { PrismaClient } from "@prisma/client";
 import prisma from "@/generated/prisma/client";
 import PostRepository from "./PostRepository";
+import { use } from "react";
 
 
 class PostPrismaRepository implements PostRepository {
@@ -10,7 +11,11 @@ class PostPrismaRepository implements PostRepository {
     
     
     async findAll(): Promise<Post[]> {
-        return await this.prisma.post.findMany()
+        return await this.prisma.post.findMany({
+            include: {
+                author: true,
+            }
+        })
     }
     
     async create(data: Omit<Post, "id">): Promise<Post> {
