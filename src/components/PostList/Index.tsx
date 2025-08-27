@@ -3,6 +3,7 @@ import React from "react";
 import PostCoverImage from "../PostCoverImage/Index";
 import PostHeading from "../PostHeading/Index";
 import { formatDateTime } from "@/utils/format-datetime";
+import PostSummary from "../PostSummary/Index";
 
 async function PostList() {
   const response = await fetch("http://localhost:3000/api/posts");
@@ -23,18 +24,14 @@ async function PostList() {
               }}
               linkProps={{ href: postLink }}
             />
-            <div className="flex flex-col sm:justify-center gap-4">
-              <time
-                className="text-slate-300 text-sm/tight"
-                dateTime={formatDateTime(post.createdAt)}
-              >
-                {formatDateTime(post.createdAt)}
-              </time>
-              <PostHeading as="h2" url={postLink}>
-                {post.title}
-              </PostHeading>
-              <p>{post.excerpt}</p>
-            </div>
+            <PostSummary
+              createdAt={post.createdAt}
+              title={post.title}
+              excerpt={post.excerpt}
+              postHeading="h2"
+              postLink={postLink}
+            />
+            
           </div>
         );
       })}

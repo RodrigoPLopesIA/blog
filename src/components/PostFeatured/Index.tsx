@@ -1,7 +1,6 @@
 import React from "react";
 import PostCoverImage from "../PostCoverImage/Index";
-import PostHeading from "../PostHeading/Index";
-import { formatDateTime } from "@/utils/format-datetime";
+import PostSummary from "../PostSummary/Index";
 
 function PostFeatured() {
   return (
@@ -16,20 +15,16 @@ function PostFeatured() {
         }}
         linkProps={{ href: "/" }}
       />
-      <div className="flex flex-col sm:justify-center gap-4">
-        <time className="text-slate-300 text-sm/tight" dateTime="2025-10-09">
-          {formatDateTime("2025-10-09T10:00:00Z")}
-        </time>
-        <PostHeading as="h1" url="/">
-          Hacker news!
-        </PostHeading>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+      <PostSummary
+        createdAt={"2025-10-09T10:00:00Z"}
+        title="Hacker news!"
+        excerpt="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
           impedit tempora dolorem, quasi eos exercitationem quam ex velit
           voluptas neque error, fuga id assumenda esse, labore soluta quibusdam
-          consectetur commodi.
-        </p>
-      </div>
+          consectetur commodi."
+        postHeading="h1"
+        postLink="/"
+      />
     </section>
   );
 }
