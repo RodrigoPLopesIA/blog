@@ -10,10 +10,13 @@ class PostPrismaRepository implements PostRepository {
     constructor(private readonly prisma: PrismaClient) {}
     
     
-    async findAll(): Promise<Post[]> {
+    async findAllPublic(): Promise<Post[]> {
         return await this.prisma.post.findMany({
             include: {
                 author: true,
+            },
+            where: {
+                published: true,
             }
         })
     }

@@ -8,7 +8,7 @@ interface PostHeadingProps {
 }
 
 const headingClass = {
-    h1: "text-2xl/tight font-extrabold sm:text-6xl/tight hover:text-green-500",
+    h1: "text-2xl/tight text-left font-extrabold sm:text-6xl/tight hover:text-green-500 ",
     h2: "text-xl/tight font-bold text-left hover:text-green-500"
 }
 export default function PostHeading({

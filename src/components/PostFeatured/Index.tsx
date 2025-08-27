@@ -1,8 +1,13 @@
 import React from "react";
 import PostCoverImage from "../PostCoverImage/Index";
 import PostSummary from "../PostSummary/Index";
+import { Post } from "@/models/post/post-model";
 
-function PostFeatured() {
+async function PostFeatured() {
+  const response = await fetch("http://localhost:3000/api/posts");
+  const posts: Post[] = await response.json();
+  const post: Post = posts[0];
+  const postLink = `/posts/${post.slug}`;
   return (
     <section className="grid grid-cols-1 gap-8 my-8 sm:grid-cols-2 group">
       <PostCoverImage
@@ -13,17 +18,14 @@ function PostFeatured() {
           height: 720,
           priority: true,
         }}
-        linkProps={{ href: "/" }}
+        linkProps={{ href: postLink }}
       />
       <PostSummary
-        createdAt={"2025-10-09T10:00:00Z"}
-        title="Hacker news!"
-        excerpt="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-          impedit tempora dolorem, quasi eos exercitationem quam ex velit
-          voluptas neque error, fuga id assumenda esse, labore soluta quibusdam
-          consectetur commodi."
+        createdAt={post.createdAt}
+        title={post.title}
+        excerpt={post.excerpt}
         postHeading="h1"
-        postLink="/"
+        postLink={postLink}
       />
     </section>
   );

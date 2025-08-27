@@ -1,4 +1,4 @@
-import PostRepository from "@/backend/repositories/PostRepository";
+import PostRepository from "@/backend/posts/repositories/PostRepository"
 
 
 export default class FindAllPostsService {
@@ -7,6 +7,6 @@ export default class FindAllPostsService {
 
 
     async execute() { 
-        return this.postRepository.findAll();
+        return this.postRepository.findAllPublic();
     }
 }
