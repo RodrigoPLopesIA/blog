@@ -9,6 +9,15 @@ class PostPrismaRepository implements PostRepository {
     
     constructor(private readonly prisma: PrismaClient) {}
     
+    async findBySlug(slug: string): Promise<Post | null> {
+        return await this.prisma.post.findUnique({
+            where: { slug },
+            include: {
+                author: true,
+            }
+        })
+    }
+    
     
     async findAllPublic(): Promise<Post[]> {
         return await this.prisma.post.findMany({
