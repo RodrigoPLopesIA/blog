@@ -7,7 +7,7 @@ async function PostFeatured() {
   const response = await fetch("http://localhost:3000/api/posts");
   const posts: Post[] = await response.json();
   const post: Post = posts[0];
-  const postLink = `/posts/${post.slug}`;
+  const postLink = `/post/${post.slug}`;
   return (
     <section className="grid grid-cols-1 gap-8 my-8 sm:grid-cols-2 group">
       <PostCoverImage

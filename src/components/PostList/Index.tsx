@@ -9,7 +9,7 @@ async function PostList() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-8 ">
       {posts.slice(1).map((post) => {
-        const postLink = `/posts/${post.slug}`;
+        const postLink = `/post/${post.slug}`;
         return (
           <div key={post.id} className="flex gap-4 flex-col group">
             <PostCoverImage
