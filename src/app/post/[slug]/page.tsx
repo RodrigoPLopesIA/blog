@@ -1,4 +1,7 @@
+import SafeMarkdown from "@/components/SafeMarkdown/Index";
 import { Post } from "@/models/post/post-model";
+import { formatDateTime } from "@/utils/format-datetime";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -28,9 +31,29 @@ async function PostSlugPage({ params }: Props) {
 
   return (
     <div>
-      <h1>{post.title}</h1>
-      <p>{post.content}</p>
-      <p>Author: {post.author.name}</p>
+      <header className="flex flex-col justify-center gap-4">
+        <Image
+          src={post.coverImageUrl}
+          alt={post.title}
+          width={1200}
+          height={720}
+        />
+        <h1 className="text-2xl text-left font-extrabold pt-8 md:text-6xl md:text-justify-center">
+          {post.title}
+        </h1>
+        <time
+          dateTime={formatDateTime(post.createdAt)}
+          className="italic text-sm text-left"
+        >
+          Publicado em {formatDateTime(post.createdAt)} por {post.author.name}
+        </time>
+
+        <p className="mb-4 text-slate-300 italic">{post.excerpt}</p>
+      </header>
+
+      <section>
+        <SafeMarkdown markdown={post.content} />
+      </section>
     </div>
   );
 }
